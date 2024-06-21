@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        #container,#container_1{
+            width:80%;
+            margin:30px auto;
+            padding:10px;
+            border-radius:20px;
+            box-shadow:0 0 10px black;
+            font-size:27px;
+            background-color:lightgreen;
+            text-align: center;
+            margin-bottom:40px;
+        }
+        h2{
+            text-align:center;
+        }
+    </style>
+    <title>jQuery Basics</title>
+</head>
+<body>
+    <div id="header">
+        <h2 style="text-align:left">jQuery | Basics</h2>
+    </div>
+
+    <h2>Java Script Approach</h2>
+    <div id="container"></div>        
+
+    <h2>jQuery Approach</h2>
+    <div id="container_1"></div>  
+
+    <!-- Java Script Approach -->
+    <script type="text/javascript">
+      let div_container = document.querySelector('#container');
+      let message = 'Using Java Script';
+      //div_container.innerHTML = message;
+      div_container.innerText = message
+      div_container.style.color = 'red';
+    </script>
+
+    <!--jQuery Approach -->
+    <script src="js/jquery-3.5.1.js"></script>    
+    <script>
+        /*
+        let div_container_1 = $('#container_1');
+        message = 'Using jQuery';
+        //div_container_1.html(message);
+        div_container_1.text(message)
+        */
+        $('#container_1').html('Using jQuery');
+        $('#container_1').css('color','red');
+    </script>
+
+</body>
+</html>

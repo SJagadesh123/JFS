@@ -1,0 +1,586 @@
+ES7 Async Await Concept in JavaScript
+-------------------------------------
+comes under Asynchronous Programming in JS
+
+The keyword "async" before a function makes the function return a promise
+
+The "await" keyword can only be used inside an async function.
+
+The await keyword makes the function pause the execution and wait for a resolved promise before it continues:
+
+
+Example
+async function myFunction() {
+  return "Hello";
+}
+
+Is the same as:
+function myFunction() {
+  return Promise.resolve("Hello");
+}
+
+
+Async/await
+-cleaner way of dealing with promises
+(Using async-await with fetch results in a much cleaner code than using multiple .then(s))
+
+The await operator is used to wait for a Promise. It can be used inside an Async block only. The keyword Await makes JavaScript wait until the promise returns a result. It has to be noted that it only makes the async function block wait and not the whole program execution.
+
+"await" works only inside async functions
+
+<script>
+async function init(){
+   await createAccount({ acno: 103, name: 'Sandhya', bal: 55000 })
+   displayAccounts();
+}
+
+init()
+</script>
+
+------------------------------
+fetch()
+
+The fetch() API allows you to asynchronously request for a resource. Use the fetch() method to return a Promise that resolves into a Response object. To get the actual data, you call one of the methods of the Response object e.g., text() or json()
+
+
+    <script>
+        async function getUsers(){
+         let response = await fetch('https://jsonplaceholder.typicode.com/users')
+         const data = await response.json()
+         console.log(data)         
+        }
+        getUsers()
+    </script>
+
+    <script>
+       let getUsers= async()=> {
+            let response = await fetch('https://jsonplaceholder.typicode.com/users')                    
+            const data = await response.json()
+            console.log(data)
+        }
+        getUsers()
+    </script>
+------------------------------
+    <script>
+        async function f() {
+            let promise = new Promise((resolve, reject) => {
+                setTimeout(() => resolve("done!"), 1000)
+            });
+
+            let result = await promise; // wait until the promise resolves (*)
+
+            alert(result); // "done!"
+        }
+
+        f();
+    </script>
+
+
+let f= async()=> {
+=========================================
+
+Scopes
+======
+Scope determines the accessibility (visibility) of variables.
+
+If a variable or other expression is not "in the current scope," then it is unavailable for use. 
+
+Scopes can also be layered in a hierarchy, so that child scopes have access to parent scopes, but not vice versa.
+
+In JavaScript there are two types of scope:
+
+1) Local scope 
+    - block scope
+    - function scope
+2) Global scope
+
+{
+  let n = 34
+}
+console.log(n)
+
+
+- loop with scoping
+
+- function with scoping
+
+- Nested Functions Scope
+
+    <script>
+        let x= 10
+        let outerFun = ()=>{
+            let y = 20
+            let innerFun = ()=>{
+                let z=30
+                console.log(x)
+                console.log(y)
+                console.log(z)
+            }
+            innerFun()
+        }
+
+        outerFun()
+    </script>
+
+=====================================
+
+Closures in JavaScript 
+----------------------
+A closure is an inner function that has access to the outer functions variables in addition to its own variables and global variables. 
+
+The inner function has access not only to the outer functions variables , but also to the outer functions parameters. We create a closure by adding a function inside another function
+
+   <script>
+        function makeFun(){
+            let name = 'ZettaMine'
+            function displayName(){
+                console.log(name)
+            }
+            return displayName
+        }
+
+
+        let myFun = makeFun()
+        myFun()
+    </script>
+
+
+    <script>
+        function addNumbers(fno, sno) {
+            let returnValue = ' result is : '
+            function add() {
+                let s = fno + sno
+                return returnValue + s
+            }
+            return add
+        }
+
+        let res = addNumbers(10, 20)
+        let s = res()
+        console.log(s)
+    </script>
+
+
+    <script>
+        let outerFun = (msg)=>{
+            let outer_x = 10;
+            let innerFun = ()=>{
+                let inner_x = 20
+                console.log(`Inner Function ${outer_x}, ${inner_x}, ${msg}`)
+            }
+            return innerFun
+        }
+
+        let myFun = outerFun('Sunil')
+        myFun()
+    </script>
+
+
+
+<h2>JavaScript Closures</h2>
+
+<p>Counting with a local variable.</p>
+
+<button type="button" onclick="myFunction()">Count!</button>
+
+<p id="demo">0</p>
+
+<script>
+let add = function () {
+  let counter = 0;
+  return function() {counter += 1; return counter;}
+})();
+
+function myFunction(){
+  document.getElementById("demo").innerHTML = add();
+}
+</script>
+
+====================================
+Exception Handling
+------------------
+
+<script>
+try {
+  adddlert("Welcome guest!");
+}
+catch(err) {
+  console.log(err.message);
+}
+</script>
+
+The try statement lets you test a block of code for errors.
+
+The catch statement lets you handle the error.
+
+The throw statement lets you create custom errors.
+
+The finally statement lets you execute code, after try and catch, regardless of the result.
+
+try {
+  let a = ["34", "32", "5", "31", "24", "44", "67"];
+  document.write(a);
+  document.write(b);            
+} 
+catch (e) {
+  console.log("There is error which shows " + e.message); //Handling error  
+}
+
+
+
+calc(10,20)  - no function definition  
+
+
+The throw statement allows you to create a custom error.
+
+The exception can be a JavaScript String, a Number, a Boolean or an Object:
+throw "Too big";    // throw a text
+throw 500;          // throw a number
+
+
+
+The Error Object
+
+JavaScript has a built in error object that provides error information when an error occurs.
+
+The error object provides two useful properties: name and message.
+
+1) RangeError
+
+let num = 1;
+try {
+  num.toPrecision(500);   // A number cannot have 500 significant digits
+}
+catch(err) {
+  console.log(err.name);
+} 
+
+2) ReferenceError
+ is thrown if you use (reference) a variable that has not been declared
+        let x = 1;
+        try {
+            x=x+y
+        }
+        catch (err) {
+            console.log(err.name);
+        } 
+
+3) SyntaxError is thrown if you try to evaluate code with a syntax error.
+
+        try {
+            eval("alert('Hai)")
+        }
+        catch (err) {
+            console.log(err.name);
+        } 
+
+4) TypeError is thrown if you use a value that is outside the range of expected types:
+
+        let n = 12;        
+        try {
+            n = n.toUpperCase()
+        }
+        catch (err) {
+            console.log(err.name);
+        } 
+
+etc
+
+Usecase: Input Validation
+- age empty
+- age not a number
+- age <10
+- age > 50
+
+
+  let message, x;
+  message = document.getElementById("p01");
+  message.innerHTML = "";
+  x = document.getElementById("demo").value;
+  try {
+    if(x == "") 
+	throw "empty";
+    if(isNaN(x)) 
+	throw "not a number";
+
+    x = Number(x);
+
+    if(x < 5) throw "too low";
+    if(x > 10) throw "too high";
+  }
+  catch(err) {
+    message.innerHTML = "Input is " + err;
+  }
+}
+==========================================
+Babel
+-----
+Babel is a free and open-source JavaScript transcompiler that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript that can be run by older JavaScript engines
+
+It is a preprocessor for Java Script / ECMA Script. It is mainly used to convert ES6+ code into a backword compatible version of Java Script that can be run by older browsers
+
+<script src="node_modules/babel-core/browser.js"></script>
+<script type="text/babel">
+// Your ES6+ code
+</script>
+
+Transpilation 
+
+1. We write code with ES6 syntax.
+
+let q = 99;
+let myVariable = `${q} bottles of beer on the wall, ${q} bottles of beer.`
+
+2. We use the code above as input for the transpiler, which will process it and produce the following output:
+
+"use strict";
+
+var q = 99;
+var myVariable = "" + q + " bottles of beer on the wall, " + q + " bottles of beer."
+
+
+google for babel
+babeljs.io
+
+codepen.io
+sunilsoftwaveit
+
+
+
+ES6 - Rest & Spread Operator
+----------------------------
+- the rest parameter allows us to pass an indefinite number of parameters to a function and access them in an array.
+
+- the spread operator allows us to spread the value of an array (or any iterable) across zero or more arguments in a function or elements in an array (or any iterable).
+
+- Rest Parameter is collecting all remaining elements into an array .
+- Spread Operator is unpacking collected elements such as arrays into single elements .
+
+
+function sum(a, b) {
+  return a + b;
+}
+
+console.log(sum(1, 2, 3, 4, 5));
+
+function sumAll(...args) { // args is the name for the array
+  let sum = 0;
+
+  for(let arg of args) {
+    sum += arg;
+  }
+  return sum;
+}
+
+alert(sumAll(1) ); // 1
+alert(sumAll(1, 2) ); // 3
+alert(sumAll(1, 2, 3) ); // 6
+
+
+function showName(firstName, lastName, ...titles) {
+  alert(firstName + ' ' + lastName ); // Julius Caesar
+
+  // the rest go into titles array
+  // i.e. titles = ["Consul", "Imperator"]
+  alert(titles[0] ); // Consul
+  alert(titles[1] ); // Imperator
+  alert(titles.length ); // 2
+}
+
+showName("Julius", "Caesar", "Consul", "Imperator");
+
+
+Spread Operator
+---------------
+let arr = [3, 5, 1];
+alert(Math.max(arr)); // NaN
+
+
+let arr = [3, 5, 1];
+alert(Math.max(...arr)); // 5 (spread turns array into a list of arguments)
+
+
+We also can pass multiple iterables this way:
+
+let arr1 = [1, -2, 3, 4];
+let arr2 = [8, 3, -8, 1];
+alert(Math.max(...arr1, ...arr2)); // 8
+
+
+We can even combine the spread syntax with normal values:
+
+let arr1 = [1, -2, 3, 4];
+let arr2 = [8, 3, -8, 1];
+alert(Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
+
+- the spread syntax can be used to merge arrays:
+
+let arr = [3, 5, 1];
+let arr2 = [8, 9, 15];
+let merged = [0, ...arr, 2, ...arr2];
+alert(merged); // 0,3,5,1,2,8,9,15 (0, then arr, then 2, then arr2)
+
+
+let str = "Hello";
+alert( [...str] ); // H,e,l,l,o
+
+
+Get a new copy of an array/object
+let arr = [1, 2, 3];
+let arrCopy = [...arr]; // spread the array into a list of parameters
+                        // then put the result into a new array
+
+// do the arrays have the same contents?
+alert(JSON.stringify(arr) === JSON.stringify(arrCopy)); // true
+
+// are the arrays equal?
+alert(arr === arrCopy); // false (not same reference)
+
+// modifying our initial array does not modify the copy:
+arr.push(4);
+alert(arr); // 1, 2, 3, 4
+alert(arrCopy); // 1, 2, 3
+
+let obj = { a: 1, b: 2, c: 3 };
+let objCopy = { ...obj }; // spread the object into a list of parameters
+                          // then return the result in a new object
+
+// do the objects have the same contents?
+alert(JSON.stringify(obj) === JSON.stringify(objCopy)); // true
+
+// are the objects equal?
+alert(obj === objCopy); // false (not same reference)
+
+// modifying our initial object does not modify the copy:
+obj.d = 4;
+alert(JSON.stringify(obj)); // {"a":1,"b":2,"c":3,"d":4}
+alert(JSON.stringify(objCopy)); // {"a":1,"b":2,"c":3}
+
+==============================
+Destructuring
+-------------
+It allows us to unpack arrays or objects into a bunch of variables which makes working with arrays and object a more convenient way
+
+let [a,b] = [1,2,3,4,5]
+let {firstName,age} = {firstName:'Sunil',lastName: 'Joseph', age:38}
+
+let name = "Sunil Joseph"
+let nameArray = names.split(" ")
+console.log(nameArray)
+
+/*
+let firstName = nameArray[0]
+let middleName = nameArray[1]
+*/
+
+let [firstName, middleName] = nameArray
+console.log(firstName, middleName)
+
+let [firstName,, lastName] = nameArray
+console.log(firstName, lastName)
+
+
+
+New Array Function - map()
+---------------------------
+It iterates an array and we can pass a callback function to perform some operation on each array item. The updated values can be returned by the callback function to create a new array
+
+arr.map((item)=>{
+  //callback function body
+})
+
+const mArr = [1,2,3,4,5]
+
+/*
+let newArr = []
+
+for(let i=0;i<mArr.length;i++){
+  newArr.push(mArr[i]*2) 
+}
+console.log(newArr)
+*/
+
+let newArr = mArr.map((item)=>{
+   return item *2
+});
+console.log(newArr)
+
+let newArr = mArr.map((item,index)=>{
+   console.log(`Item at Pos: ${index} is ${item}`)
+});
+console.log(newArr) //undefined,.....
+
+
+
+var numbers = [4, 9, 16, 25];
+console.log(numbers.map(Math.sqrt));
+}
+
+ let doubleIt = (x)=>{return x*2}
+        var numbers = [4, 9, 16, 25];
+        console.log(numbers.map(doubleIt));
+
+
+
+Working with object[]
+
+let persons = [
+  {firstname : "Malcom", lastname: "Reynolds"},
+  {firstname : "Kaylee", lastname: "Frye"},
+  {firstname : "Jayne", lastname: "Cobb"}
+];
+
+let getFullName = (item)=> {
+  var fullname = [item.firstname,item.lastname].join(" ");
+  return fullname;
+}
+
+console.log(persons.map(getFullName));
+
+
+       let persons = [
+            { firstName: 'Sunil', lastName: 'Joseph', age: 32 },
+            { firstName: 'Naveen', lastName: 'Joseph', age: 25 },
+            { firstName: 'Harsha', lastName: 'Joseph', age: 38 }
+        ]
+
+        let newArr = persons.map((item, index) => {
+           return item.firstName+' '+item.lastName
+        })
+
+        console.log(newArr)
+
+
+-------------------------
+Array Function - reduce
+
+It iterates an array and we can pass a callback function to perform some operation on each array item.
+The difference here is that reduce() passes the result of the callback from one iteration to the next one. This callback result is called accumulator. The accumulator can be anything like integer, string , object , array etc and must be instantiated and passed when calling reduce
+
+arr.reduce((acc,item)=>{
+  //callback function body
+}, acc_default_value)
+
+const numArr = [1,2,3,4,5]
+numArr.reduce((acc,item)=>{
+ console.log(item)
+ console.log(acc)
+ return acc+1
+},0)
+
+
+
+
+        const numArr = [1, 2, 3, 4, 5]
+        let sum = numArr.reduce((acc, item) => {
+            //console.log(item)
+            //console.log(acc)
+            return acc + item
+        }, 0)
+        console.log(sum)
+
+
+
+
+
+

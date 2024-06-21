@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        div{
+            width:80%;
+            padding:10px;
+            border-radius:20px;
+            background-color:lightgreen;
+            margin:30px auto;
+            text-align:center;
+        }
+        input,p{
+            font-size:24px;
+        }
+        p{
+            font-weight:bolder;
+            text-shadow:0 0 10px black;
+        }
+        
+    </style>
+    <title>jQuery</title>
+</head>
+<body>
+    <nav id="header">
+        <h2>Java Script Vs jQuery</h2>
+    </nav>
+
+    <div>
+        <h2>Java Script Way</h2>
+        <input type="text" id="txt_field_1">
+        <p id="js_para">_____</p>
+    </div>
+
+    <div>
+        <h2>jQuery Way</h2>
+        <input type="text" id="txt_field_2">
+        <p id="jq_para">_____</p>
+    </div>
+
+    <!-- Java Script Approach-->
+    <script>
+        let txt_field_1 = document.querySelector('#txt_field_1');
+        let js_para = document.querySelector('#js_para');
+        txt_field_1.addEventListener('keyup',function(){
+            let data = txt_field_1.value;
+            js_para.innerText = data;
+        })
+    </script>
+
+    <!--jQuery Approach-->
+    <script src="js/jquery-3.5.1.js"></script>
+    <script>
+        $('#txt_field_2').keyup(function(){
+            let data = $('#txt_field_2').val();
+            $('#jq_para').text(data);
+        })
+    </script>
+</body>
+</html>

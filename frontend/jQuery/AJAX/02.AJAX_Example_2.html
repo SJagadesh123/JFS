@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/mdb.css">
+    <style>
+        .my_card{
+            height:500px;
+            box-shadow:0 0 10px black;
+            border-radius:20px;
+        }
+    </style>
+    <title>Random Users</title>
+</head>
+
+<body onload="getPersonData()">
+    <nav class="navbar navbar-expand-sm  bg-warning">
+        <a href="#" class="navbar-brand">
+            AJAX | Example-02 | Random Users
+        </a>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row text-center">
+            <div class="col-md-3">
+                <div class="card my_card">
+                    <div class="card-header text-center bg-warning">
+                        <h3 id="p_id">ID</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <img id="p_image" src="" alt="" class="rounded-circle">
+                        <h3 id="p_name"></h3>
+                        <p class="lead" id="p_email"></p>
+                        <p id="p_profile"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/mdb.js"></script>
+
+    <script>
+        let getPersonData = () =>{
+            $.ajax({
+                url: 'https://randomuser.me/api/',
+                dataType: 'json',
+                success: function(data) {
+                    displayPerson(data.results[0]);
+                }
+            });
+        }
+
+        setInterval(getPersonData, 2000)
+
+        let displayPerson = (person)=>{     
+            //console.log(person)       
+            let pname = `${person.name.title}. ${person.name.first} ${person.name.last}`
+            let pimage = `${person.picture.large}`
+
+            $('#p_image').attr('src',pimage)
+            $('#p_name').text(pname)
+            $('#p_profile').text('Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque rerum, sunt quasi ea nesciunt minus voluptatum repellat hic consequatur veniam.')
+            if(person.id.value.length>0){
+             $('#p_id').text(person.id.value)
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <style>            
+        *{
+            font-size:20px;
+        }
+        #but{
+            background:transparent;
+            padding:10px;
+            width:200px;
+            border:1px solid black;
+            border-radius:15px;
+            margin: 20px;
+        }
+        #but:hover{
+            background:darkred;
+            color:white;
+            border:none;
+        }
+        p{
+            margin:20px;
+        }
+    </style>
+    </style>
+    <title>Selectors | Filters</title>
+</head>
+<body>
+    <nav id="header">
+        <h2>jQuery | Selectors | Filter</h2>
+    </nav>
+    <section>
+        <article>
+            <p>This is paragraph - 1 (first)</p>  
+
+            <p>This is paragraph - 2</p>  
+
+            <p>This is paragraph - 3</p> 
+
+            <p>This is paragraph - 4 (last)</p> 
+
+            <button id="but">Change Look</button>
+
+        </article>
+
+		<form>
+Name: <input type="text"><br><br>
+
+<input type="checkbox" name="vehicle" value="Bike">Bike <br><br>
+
+<input type="checkbox" name="vehicle" value="Car" checked>Car<br><br>
+
+<input type="checkbox" name="vehicle" value="Airplane">Plane<br><br>
+
+<input type="submit">
+</form>
+    </section>
+
+    <script src="../01.JQ_Basics/js/jquery-3.5.1.js"></script>
+    <script>
+        $('#but').click(function(){
+            $('p').css({
+                background:'linear-gradient(45deg,black 50%,darkred 50%)',
+                width:'300px',
+                padding:'10px',
+                color:'white',
+                'text-align':'center',
+                'border-radius':'10px'
+            })
+			$(":checked").wrap("<span style='background-color:red'>");
+            $('p:first,p:last').css('background','linear-gradient(45deg,black,limegreen)');
+
+			
+        })
+    </script>
+</body>
+</html>

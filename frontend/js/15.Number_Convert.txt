@@ -1,0 +1,286 @@
+Number Convert
+
+<!DOCTYPE html>
+<html>
+<head>
+ <style>
+ body{
+    font-family: "Verdana";
+    margin: 0;
+}
+header , footer{
+    background-size: cover;
+    padding: 10px;
+    font-size: 25px;
+    color: black;
+    text-align: center;
+    text-shadow: 2px 2px 10px white;
+}
+
+footer{  
+    background-size: cover;
+    padding: 10px;
+    font-size: 20px;
+    color: #0E0C0A;
+    text-align: center;
+    line-height: 12px;    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.main-section{
+   text-align: center;
+   padding: 50px;
+}
+.heading-div{
+   background-color: #504644;
+    padding: 20px;
+    width: 500px;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: 0 0 15px #93857b;
+}
+input[type='number']{
+    height: 40px;
+    font-size: 30px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid black;
+    color: white;
+}
+::placeholder{
+    color: lightgray;
+}
+.display-div{
+    padding: 3em;
+    background-color: #93857b;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px #504644;
+}
+.display-div h1{
+    font-size: 50px;
+    padding: 0;
+    margin: 0;
+    color: #423b35;
+}
+</style>
+</head>
+<body>
+    <!-- Heading -->
+    <header>
+        <h2>JavaScript Number App</h2>
+    </header>
+
+    <!-- Main Content Section -->
+    <section class="main-section">
+        <div class="heading-div">
+            <form>
+                <input type="number" placeholder="Enter a Number" id="number">
+            </form>
+        </div>
+
+        <div class="display-div">
+            <h1 id="text-number"></h1>
+        </div>
+    </section>
+
+    <!-- Main Footer -->
+    <footer>
+        <h3>JavaScript Numbers App</h3> 
+    </footer>
+
+<script>
+let numbers = ['ZERO','ONE' , 'TWO' , 'THREE' , 'FOUR' , 'FIVE' , 'SIX', 'SEVEN' , 'EIGHT' , 'NINE'];
+let convertStringNumber = (str) => {
+    let wordNumber = '';
+    for(let i=0; i<str.length; i++){
+        let digit = Number(str.charAt(i));
+        wordNumber += ` ${numbers[digit]} `;
+    }
+    return wordNumber;
+};
+
+// Get the HTML element
+let inputBox = document.querySelector('#number');
+inputBox.addEventListener('keyup',function() {
+   let textEntered = inputBox.value;
+   let h1Tag = document.querySelector('#text-number');
+   h1Tag.innerText = convertStringNumber(textEntered);
+});
+</script>
+</body>
+</html>
+
+----------------------------------------
+
+/*
+    Website Links
+    ---------------
+    1) for generating data mockup
+       https://mockaroo.com/
+
+    2) for minifier
+       https://www.minifier.org/
+ */
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Employee Management</title>
+<style>
+.buttons-section{
+    text-align: center;
+    margin: 15px;
+}
+button{
+    font-size: 20px;
+    background: linear-gradient(45deg,black,blueviolet);
+    color: white;
+    border: none;
+    outline: none;
+    padding: 14px 25px;
+    margin: 10px;
+    box-shadow: 0 0 5px black;
+}
+button:hover{
+    opacity: 0.8;
+}
+input[type="search"]{
+    font-size: 30px;
+    margin: 10px;
+    border: 2px solid gray;
+    outline: none;
+    height: 55px;
+    border-radius: 5px;
+}
+input[type="search"]:focus{
+    border: 2px solid darkblue;
+    box-shadow: 0 0 5px blueviolet;
+}
+table{
+    width: 90%;
+    margin: auto;
+    box-shadow: 0 0 5px blueviolet;
+}
+thead th{
+    background: linear-gradient(45deg,orange,yellow);
+    color: black;
+    padding: 15px;
+}
+tbody td{
+    padding: 15px;
+}
+tr:nth-child(even){
+    background-color:#008bec;
+    color: white;
+}
+tr:nth-child(odd){
+    background-color: #825bd3;
+    color: white;
+}
+tr:hover{
+    background-color: rebeccapurple;
+}
+.buttons-section p{
+    font-size: 18px;
+    font-family: "Comic Sans MS",sans-serif;
+}
+.buttons-section span{
+    font-size: 25px;
+    font-weight: bold;
+    color: blueviolet;
+}
+  </style>
+</head>
+<body>
+<section class="buttons-section">
+    <button id="all-emp-btn">All Employees</button>
+    <button id="male-emp-btn">Male Employees</button>
+    <button id="female-emp-btn">Female Employees</button>
+    <form>
+        <input type="search" placeholder="Employee Name" id="emp-search">
+    </form>
+    <!-- Employee Count -->
+    <p>The Records Found : <span id="count"></span></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>SNO</th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>EMAIL</th>
+                <th>GENDER</th>
+                <th>COUNTRY</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+
+        </tbody>
+    </table>
+</section>
+
+
+<script>
+let employees=[{"id":1,"first_name":"Brooke","last_name":"Lapworth","email":"blapworth0@usgs.gov","gender":"Female","country":"Panama"},{"id":2,"first_name":"Reed","last_name":"Giblin","email":"rgiblin1@accuweather.com","gender":"Male","country":"Costa Rica"},{"id":3,"first_name":"Milly","last_name":"Lyard","email":"mlyard2@livejournal.com","gender":"Female","country":"Czech Republic"},{"id":4,"first_name":"Bay","last_name":"Kelby","email":"bkelby3@studiopress.com","gender":"Male","country":"Guatemala"},{"id":5,"first_name":"Sebastian","last_name":"Hillborne","email":"shillborne4@tripod.com","gender":"Male","country":"France"},{"id":6,"first_name":"Ryun","last_name":"Dunk","email":"rdunk5@constantcontact.com","gender":"Male","country":"Portugal"},{"id":7,"first_name":"Sauveur","last_name":"Eberlein","email":"seberlein6@pinterest.com","gender":"Male","country":"China"},{"id":8,"first_name":"Archibold","last_name":"Willers","email":"awillers7@printfriendly.com","gender":"Male","country":"China"},{"id":9,"first_name":"Aldin","last_name":"Hammarberg","email":"ahammarberg8@dmoz.org","gender":"Male","country":"Philippines"},{"id":10,"first_name":"Ofilia","last_name":"Meffan","email":"omeffan9@1688.com","gender":"Female","country":"Guatemala"},{"id":11,"first_name":"Jeane","last_name":"Shingles","email":"jshinglesa@illinois.edu","gender":"Female","country":"Czech Republic"},{"id":12,"first_name":"Estella","last_name":"Egdal","email":"eegdalb@dailymail.co.uk","gender":"Female","country":"Brazil"},{"id":13,"first_name":"Ora","last_name":"Stainsby","email":"ostainsbyc@desdev.cn","gender":"Female","country":"United States"},{"id":14,"first_name":"Carrol","last_name":"Houtby","email":"choutbyd@vistaprint.com","gender":"Male","country":"Finland"},{"id":15,"first_name":"Arda","last_name":"Allcorn","email":"aallcorne@wiley.com","gender":"Female","country":"France"},{"id":16,"first_name":"Lazare","last_name":"Rogeron","email":"lrogeronf@soundcloud.com","gender":"Male","country":"Brazil"},{"id":17,"first_name":"Jasmine","last_name":"Edelston","email":"jedelstong@salon.com","gender":"Female","country":"Netherlands"},{"id":18,"first_name":"Jesselyn","last_name":"Le Jean","email":"jlejeanh@squarespace.com","gender":"Female","country":"Armenia"},{"id":19,"first_name":"Jandy","last_name":"Bes","email":"jbesi@narod.ru","gender":"Female","country":"Sweden"},{"id":20,"first_name":"Bobbie","last_name":"Vasyutin","email":"bvasyutinj@zdnet.com","gender":"Female","country":"Russia"},{"id":21,"first_name":"Dana","last_name":"Vaskin","email":"dvaskink@blinklist.com","gender":"Male","country":"Portugal"},{"id":22,"first_name":"Melisandra","last_name":"Halse","email":"mhalsel@dmoz.org","gender":"Female","country":"Japan"},{"id":23,"first_name":"Amie","last_name":"Wasson","email":"awassonm@twitter.com","gender":"Female","country":"China"},{"id":24,"first_name":"Armin","last_name":"Frowde","email":"afrowden@sun.com","gender":"Male","country":"Russia"},{"id":25,"first_name":"Tabb","last_name":"McMorland","email":"tmcmorlando@weebly.com","gender":"Male","country":"Russia"},{"id":26,"first_name":"Harwilll","last_name":"Pease","email":"hpeasep@sciencedaily.com","gender":"Male","country":"Ivory Coast"},{"id":27,"first_name":"Artemus","last_name":"Spacey","email":"aspaceyq@about.me","gender":"Male","country":"Sri Lanka"},{"id":28,"first_name":"Mellie","last_name":"Coper","email":"mcoperr@sohu.com","gender":"Female","country":"Myanmar"},{"id":29,"first_name":"Randall","last_name":"Mathes","email":"rmathess@ow.ly","gender":"Male","country":"China"},{"id":30,"first_name":"Sharline","last_name":"Banck","email":"sbanckt@spotify.com","gender":"Female","country":"Iran"},{"id":31,"first_name":"Frederik","last_name":"Boulstridge","email":"fboulstridgeu@theguardian.com","gender":"Male","country":"Tunisia"},{"id":32,"first_name":"Geoffry","last_name":"Gabbidon","email":"ggabbidonv@forbes.com","gender":"Male","country":"Indonesia"},{"id":33,"first_name":"Kimberlee","last_name":"Luxton","email":"kluxtonw@icio.us","gender":"Female","country":"Indonesia"},{"id":34,"first_name":"Carrie","last_name":"Huban","email":"chubanx@msu.edu","gender":"Female","country":"Honduras"},{"id":35,"first_name":"Noellyn","last_name":"Dudderidge","email":"ndudderidgey@japanpost.jp","gender":"Female","country":"China"},{"id":36,"first_name":"Rockwell","last_name":"Mc Meekin","email":"rmcmeekinz@example.com","gender":"Male","country":"Nicaragua"},{"id":37,"first_name":"Granville","last_name":"Navein","email":"gnavein10@google.fr","gender":"Male","country":"Russia"},{"id":38,"first_name":"Faye","last_name":"Engelmann","email":"fengelmann11@japanpost.jp","gender":"Female","country":"Peru"},{"id":39,"first_name":"Rog","last_name":"Layland","email":"rlayland12@yellowbook.com","gender":"Male","country":"China"},{"id":40,"first_name":"Rockie","last_name":"Crickett","email":"rcrickett13@statcounter.com","gender":"Male","country":"Indonesia"},{"id":41,"first_name":"Kristien","last_name":"Rowney","email":"krowney14@i2i.jp","gender":"Female","country":"Cambodia"},{"id":42,"first_name":"Ofilia","last_name":"Beisley","email":"obeisley15@phpbb.com","gender":"Female","country":"Peru"},{"id":43,"first_name":"Jemima","last_name":"Brokenshire","email":"jbrokenshire16@parallels.com","gender":"Female","country":"Indonesia"},{"id":44,"first_name":"Yoshi","last_name":"Cattenach","email":"ycattenach17@usa.gov","gender":"Female","country":"Norway"},{"id":45,"first_name":"Vina","last_name":"Hickinbottom","email":"vhickinbottom18@soundcloud.com","gender":"Female","country":"Sweden"},{"id":46,"first_name":"Collette","last_name":"Bowhey","email":"cbowhey19@miibeian.gov.cn","gender":"Female","country":"China"},{"id":47,"first_name":"Base","last_name":"Otley","email":"botley1a@netscape.com","gender":"Male","country":"France"},{"id":48,"first_name":"Gianna","last_name":"Nunn","email":"gnunn1b@rediff.com","gender":"Female","country":"France"},{"id":49,"first_name":"Earl","last_name":"Penniell","email":"epenniell1c@amazonaws.com","gender":"Male","country":"Canada"},{"id":50,"first_name":"Magnum","last_name":"Vasilkov","email":"mvasilkov1d@japanpost.jp","gender":"Male","country":"France"},{"id":51,"first_name":"Rosemarie","last_name":"Kinny","email":"rkinny1e@ox.ac.uk","gender":"Female","country":"Argentina"},{"id":52,"first_name":"Andrej","last_name":"Blakeborough","email":"ablakeborough1f@bing.com","gender":"Male","country":"Finland"},{"id":53,"first_name":"Jasmine","last_name":"Lauritsen","email":"jlauritsen1g@issuu.com","gender":"Female","country":"Nigeria"},{"id":54,"first_name":"Daryn","last_name":"Rhubottom","email":"drhubottom1h@gmpg.org","gender":"Female","country":"China"},{"id":55,"first_name":"Allister","last_name":"Baudi","email":"abaudi1i@over-blog.com","gender":"Male","country":"Poland"},{"id":56,"first_name":"Tommi","last_name":"Girkins","email":"tgirkins1j@nyu.edu","gender":"Female","country":"Argentina"},{"id":57,"first_name":"Blane","last_name":"Ickeringill","email":"bickeringill1k@infoseek.co.jp","gender":"Male","country":"Sweden"},{"id":58,"first_name":"Frederick","last_name":"Aberdalgy","email":"faberdalgy1l@bing.com","gender":"Male","country":"Brazil"},{"id":59,"first_name":"Cornie","last_name":"Humphrys","email":"chumphrys1m@mapquest.com","gender":"Male","country":"Peru"},{"id":60,"first_name":"Cassandry","last_name":"Lowry","email":"clowry1n@howstuffworks.com","gender":"Female","country":"United States"},{"id":61,"first_name":"Calida","last_name":"Moulden","email":"cmoulden1o@irs.gov","gender":"Female","country":"Poland"},{"id":62,"first_name":"Netty","last_name":"Geater","email":"ngeater1p@ft.com","gender":"Female","country":"France"},{"id":63,"first_name":"Symon","last_name":"Errett","email":"serrett1q@bloglovin.com","gender":"Male","country":"Poland"},{"id":64,"first_name":"Aurthur","last_name":"Morteo","email":"amorteo1r@eventbrite.com","gender":"Male","country":"Anguilla"},{"id":65,"first_name":"Irvine","last_name":"Delieu","email":"idelieu1s@prweb.com","gender":"Male","country":"Russia"},{"id":66,"first_name":"Martina","last_name":"Simonaitis","email":"msimonaitis1t@google.it","gender":"Female","country":"Cambodia"},{"id":67,"first_name":"Rogerio","last_name":"McConachie","email":"rmcconachie1u@mashable.com","gender":"Male","country":"Chile"},{"id":68,"first_name":"Lilias","last_name":"Whickman","email":"lwhickman1v@flickr.com","gender":"Female","country":"Greece"},{"id":69,"first_name":"Anne-corinne","last_name":"Langmuir","email":"alangmuir1w@msn.com","gender":"Female","country":"Thailand"},{"id":70,"first_name":"Orville","last_name":"Borzone","email":"oborzone1x@people.com.cn","gender":"Male","country":"Sweden"},{"id":71,"first_name":"Persis","last_name":"Jillions","email":"pjillions1y@blogtalkradio.com","gender":"Female","country":"Germany"},{"id":72,"first_name":"Raynell","last_name":"Wheadon","email":"rwheadon1z@4shared.com","gender":"Female","country":"Philippines"},{"id":73,"first_name":"Welbie","last_name":"Wigzell","email":"wwigzell20@japanpost.jp","gender":"Male","country":"Philippines"},{"id":74,"first_name":"Georgine","last_name":"Londors","email":"glondors21@ihg.com","gender":"Female","country":"Sweden"},{"id":75,"first_name":"Kala","last_name":"O'Sirin","email":"kosirin22@freewebs.com","gender":"Female","country":"Italy"},{"id":76,"first_name":"Yankee","last_name":"McMichan","email":"ymcmichan23@springer.com","gender":"Male","country":"Ukraine"},{"id":77,"first_name":"Timothy","last_name":"Worters","email":"tworters24@sfgate.com","gender":"Male","country":"China"},{"id":78,"first_name":"Sheff","last_name":"Rickesies","email":"srickesies25@patch.com","gender":"Male","country":"Brazil"},{"id":79,"first_name":"Bond","last_name":"Schober","email":"bschober26@opensource.org","gender":"Male","country":"China"},{"id":80,"first_name":"Colin","last_name":"Eskriett","email":"ceskriett27@washington.edu","gender":"Male","country":"China"}];
+
+
+
+// All Employees
+let allEmpButton = document.querySelector('#all-emp-btn');
+allEmpButton.addEventListener('click',function() {
+    displayEmployees(employees);
+});
+
+// Male Employees
+let maleEmployeesBtn = document.querySelector('#male-emp-btn');
+maleEmployeesBtn.addEventListener('click',function() {
+    let maleEmployees = employees.filter(function(employee) {
+        return employee.gender === 'Male';
+    });
+    displayEmployees(maleEmployees);
+});
+
+// Female Employees
+let feMaleEmployeesBtn = document.querySelector('#female-emp-btn');
+feMaleEmployeesBtn.addEventListener('click',function() {
+    let feMaleEmployees = employees.filter(function(employee) {
+        return employee.gender === 'Female';
+    });
+    displayEmployees(feMaleEmployees);
+});
+
+// Employee Search Logic
+let searchBox = document.querySelector('#emp-search');
+searchBox.addEventListener('keyup',function() {
+    let textEntered = searchBox.value;
+    console.log(textEntered);
+    if(textEntered !== ''){
+        let filteredEmployees = employees.filter(function(employee) {
+            return employee.first_name.toUpperCase().startsWith(textEntered.toUpperCase());
+        });
+        displayEmployees(filteredEmployees);
+    }
+    else{
+        displayEmployees([]);
+    }
+});
+
+// display Employees
+let displayEmployees = (employees) => {
+    // display Employees count
+   document.querySelector('#count').innerText = employees.length;
+
+    let tableBody = document.querySelector('#table-body');
+    let tableRows = '';
+    for(let employee of employees){
+        tableRows += `<tr><td>${employee.id}</td><td>${employee.first_name}</td><td>${employee.last_name}</td> <td>${employee.email}</td> <td>${employee.gender}</td> <td>${employee.country}</td></tr>\n`;
+    }
+    tableBody.innerHTML = tableRows;
+};
+</script>
+</body>
+</html>

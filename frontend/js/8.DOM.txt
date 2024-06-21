@@ -1,0 +1,719 @@
+Java Script DOM
+===============
+Document Object Model
+
+Whenever browser gets an HTML document, before displaying the content on the browser, it reads the entire HTML document and prepares a tree like structure using all the HTML elements. This tree structure is called as DOM tree.
+
+Each HTML element inside the DOM tree is called as DOM Node
+
+Once this tree structure is built, then the browser renders each HTML element and display them on the browser as a web page
+
+When a web page is loaded, the browser creates a Document Object Model of the page. 
+
+
+JavaScript can access all the elements in a webpage making use of DOM and we can put our own content; so that Java Script provides the dynamic behaviour to the HTML page
+
+By using JS we can do the following to the DOM Tree:
+1) can add new HTML elements/ DOM Nodes and attributes
+2) can change the existing DOM node content
+3) can remove a DOM Node from the DOM Tree
+4) can change the HTML attributes in the page
+5) can change the CSS styles in the page
+6) can react to all HTML events in the page
+7) can create new HTML events in the page
+etc
+
+
+The HTML DOM is a standard for how to get, change, add, or delete HTML elements
+
+
+In a browser each tab is represented with one DOM Tree. 
+
+A browser itself is an object and it contains a collection of DOM Trees and is called as Browser Object Model (BOM)
+
+
+In BOM Model the top level object is "window" and it represents the entire browser
+
+window.innerWidth; -to access the width of the browser
+window.innerHeight; -to access the height of the browser
+window.open(); -to open a new Tab
+window.document; -to access the document object
+
+In DOM Model the top level object is "document" and it represents the entire document
+
+We can access the Document object by using either
+ window.document
+ 	OR
+directly by using -  document 
+
+We can manipulate the DOM Nodes using the document object's properties and methods
+
+
+DOM Properties:
+--------------
+1) document.anchors - returns all <a> elements that have a "name" attribute
+
+2) document.baseURI - returns the absolute base URI of the document
+
+3) document.body - returns the <body> element 
+
+4) document.cookie - returns the document's cookie
+
+5) document.doctype - returns the document's doctype
+
+6) document.documentElement - returns the <html> element 
+
+7) document.domain - returns the domain name of the document server 
+
+8) document.documentURI - returns the URI of the document 
+
+9) document.forms - returns all <form> elements 	
+
+10) document.head - returns the <head> element 	
+
+11) document.images - returns all <img> elements 
+
+12) document.lastModified - returns the date and time the document was updated
+
+13) document.links - returns all <area> and <a> elements that have a "href" attribute
+
+14) document.scripts - returns all <script> elements
+
+15) document.title - returns the <title> element 
+
+16) document.URL - returns the complete URL of the document 
+etc
+
+<script>
+ console.log(document.URL)
+ console.log(document.title)
+ console.log(document.body.innerHTML)  
+ console.log(document.lastModified)  
+ document.body.innerHTML='<h1>Cognizant</h1>'
+</script>
+
+-------------------------
+Example:
+let doc = document
+//alert(typeof doc)
+console.log(doc)
+
+console.log(`Title = ${doc.title}`)
+console.log(`URL = ${doc.URL}`)
+console.log(`Active Link Color = ${doc.alinkColor}`)
+console.log(`Background Color = ${doc.bgColor}`)
+console.log(`No of Links = ${doc.anchors.length}`)
+
+let article_1 = document.getElementById('article_1')
+console.log(article_1.innerHTML)
+console.log('-----------------')
+console.log(article_1.innerText)
+
+//article_1.innerHTML = '<h1>Welcome to DOM @ SIT</h1>'
+article_1.innerText = '<h1>Welcome to DOM @ SIT</h1>'
+-------------------------
+
+
+How to find HTML Elements
+-------------------------
+1) document.getElementById(id) - find an element by element id
+- returns an object of type "HTMLElement" or "HTMLInputElement" etc or "null" if no elements with the specified ID exists.
+
+Ques) to  display a message box with the welcome message for the input value of the text box in the onclick event of button.
+
+
+
+2) document.getElementsByName(name) - find elements by name.
+this method returns all the elements with the specified name as a "NodeList" object.
+
+The "NodeList" object represents a collection of nodes. 
+
+The nodes can be accessed by index numbers starts from 0
+
+- use the "length" property of the NodeList object to determine the number of elements , and also we can loop through all elements and extract the details
+
+ document.getElementsByName(name)
+
+Example- 1 : to check the total number of elements with the name of "gender" in the page and also to display each element's value and type
+
+
+<html>
+<head>
+<script type="text/javascript">  
+function totalGenders()  
+{  
+ let allgenders=document.getElementsByName("gender");  
+ alert("Total Genders: "+allgenders.length);  
+
+ for(let i=0;i<genders.length;i++){
+   console.log(genders[i].value+' - '+genders[i].type)
+ }    
+}  
+</script>  
+</head>
+
+<body>
+Male: <input type="radio" name="gender" value="male"> 
+Female: <input type="radio" name="gender" value="female">    
+<input type="button" onclick="totalGenders()" 
+value="Get No of Genders"/>  
+</body>
+</html>
+
+Example-2 : to check all checkboxes with name "grad" on button click
+
+
+
+
+<html>
+<body>
+Graduate:  <input name="grad" type="checkbox" value="Graduate">
+Post Graduate:  <input name="grad" type="checkbox" value="P Graduate">
+
+<button onclick="myFunction()">Select all Checkboxes</button>
+
+<script>
+function myFunction() {
+  let x = document.getElementsByName("grad");
+  let i;
+  for (i = 0; i < x.length; i++) {
+    if (x[i].type == "checkbox") {
+      x[i].checked = true;
+    }
+  }
+}
+</script>
+</body>
+</html>
+
+3) document.getElementsByTagName(html_tag_name) 
+- returns all the elements of HTML tag name as a HTMLColletion (NodeList) object.
+
+The parameter value "*" returns all elements in the document.
+
+Example-1 : get all "input" elements and display its type and value
+
+Example-2: to display all paragraph (<p>) content and to change the content of each <p>
+
+
+
+
+4) document.getElementsByClassName(css_class_name) 
+- returns all elements with the specified class name, as a HTMLCollection (NodeList) object
+
+Example-1 : click the button to change the text of the first element with class="sit" (index 0).
+
+
+
+
+5) querySelector(selector) - returns the first element that matches the specified selector (may be tag selector or class selector or id selector). 
+
+6) querySelectorAll(selector) - return all the matches.
+
+Example-1 : Get the first <p> element in the document and to provide a background color
+
+Example-2 : to add a background color to the first element in the document with class="sit"
+
+Example-3 : to change the text of first element with a specific id 
+
+==========================================================
+
+How to change HTML Elements?
+---------------------------
+1) elementRef.innerHTML = "new content"
+
+to get content
+ let data = elementRef.innerHTML
+
+- is a property of HTMLElement Object 
+- this property sets or returns the HTML content (inner HTML) of an element.
+- it is used mostly in the web pages to generate the dynamic html content.
+
+
+2) element.<attribute> = "new value" 
+- change the attribute value of an HTML element
+ <script>
+  let img = document.getElementById('imgLogo');
+  img.src="../images/logo.png"
+ </script>
+
+Example: to change the image source on button click and on mouse over on an image
+
+
+3) element.style.property = "new style_value" 
+- change the style of an HTML element
+
+Example: to change the source, width, height and border of an image on mouseover and mouseout (magnifying effect)
+
+Example : to change the background color of all <p> elements in the document:
+
+Example: to change the Hypertext, URL, and target of a link:
+
+
+======================================
+<html>
+<style>
+    p{
+     font-family:verdana;
+     font-size:28px;
+    }    
+</style>    
+<body>
+<p>Paragraph-1</p>    
+<p id="para2">Paragraph-2</p>    
+<p>Paragraph-3</p>        
+    
+<button onclick="changeContent()">Change Paragraph Content</button>
+
+<script>
+ function changeContent(){    
+  let p_elements = document.getElementsByTagName('p');   
+
+  alert('No of Paragraphs - '+ p_elements.length)   
+  for(i=0;i<p_elements.length;i++){
+   alert(p_elements[i].innerHTML)     
+   //to change the content
+   p_elements[i].innerHTML=(i+1)+" - Paragraph"
+ }//for    
+ }//function
+</script>    
+</body>
+</html>
+
+-----------------------------------
+<style>
+.para_props{
+ .....
+}
+</style>
+<script>
+ let elements = document.getElementsByClassName('para_props');   
+</script>
+
+<html>
+<style>
+    .sit{
+      font-family:verdana;
+      font-size:28px;
+    }    
+</style>    
+<body>
+ <p class="sit" align="left" style="color:black">   Paragraph-1</p>  
+    
+ <p id="para2">Paragraph-2</p>    
+ <p class="sit">Paragraph-3</p>       
+ <h1 class="sit">Heading</h1>
+ 
+ <button onclick="changeContent()">Change Content  </button>
+ <script>
+ function changeContent()
+ {    
+   let elements = document.getElementsByClassName('sit')
+   //alert(elements.length)
+   if(elements.length>0){
+    elements[0].innerHTML = 'New Content'
+    alert(elements[0].style.color)   
+    elements[0].style.color='red'  
+    elements[0].style.fontWeight='bolder' 
+    alert(elements[0].align) //attribute   
+    elements[0].align='center'   
+   }
+   else{
+       alert('No elements with class "sit"')
+   }     
+ }//function
+</script>    
+</body>
+</html>
+
+-----------------------------
+<html>
+<body>
+<p>This is a p element.</p>
+<p>This is also a p element.</p>
+<button onclick="changeProp()">Change</button>
+
+<script>
+function changeProp() {
+  let element = document.querySelector("p")
+  if(element != null){
+    element.style.backgroundColor = "red";
+ }
+}//function
+</script>
+
+</body>
+</html>
+----------------------------
+<script>
+ function changeProps(){    
+   let element = document.querySelector('.sit') //class selector
+
+   if(element != null){
+    element.style.backgroundColor='yellow' 
+   }   
+ }//function
+</script>
+
+
+<script>
+ function changeProps(){    
+   let element = document.querySelector('#head1')
+   if(element != null){    
+    element.style.backgroundColor='yellow'
+    element.innerHTML = 'Heading Changed'   
+   }   
+ }//function
+</script>
+
+
+<script>
+function changePColor(){
+ let p_elements = document.getElementsByTagName("P");
+ //let p_elements = document.querySelectorAll("p")
+
+ for(let i = 0; i<p_elements.length; i++) {
+   p_elements[i].style.backgroundColor = "red";
+ } 
+}
+</script>
+
+<html>
+<body> 
+ <a id="officeLink" href="http://www.google.com"> Google</a>
+
+<button onclick="changeProps()">Change Link</button>
+
+<script>
+let link = document.getElementById('officeLink')
+
+function changeProps()
+{
+ link.innerHTML='Cognizant'  
+ link.href="https://www.cognizant.com" 
+ link.target='_blank'    
+}
+</script>    
+</body>
+</html>
+
+======================================
+
+DOM Methods
+-----------
+1) write(string) - writes the given string on the document.
+
+2) writeln(string) -	writes the given string on the document with newline character at the end.
+
+- if the above two methods is used after an HTML document is fully loaded, it will delete all existing HTML.
+
+<html>
+<body>
+<h1>DOM</h1>
+<script>
+ document.write(new Date());
+</script>
+</body>
+</html>
+
+How to get the value of input text by user?
+
+   document.form1.name.value 
+
+<form name="form1">
+ Name <input type="text" name="name">
+</form>
+
+
+Here, "document" is the root element that represents the html document.
+
+
+
+changing the attribute value by using setAttribute() method
+------------------------
+Example : change the image [src] of <img> on  click
+
+<img src="../images/p1.jpg" onclick="this.setAttribute('src', '../images/p2.jpg')">
+
+	OR
+
+<img src="../images/p1.jpg"  id='img' onclick="document.getElementById('img'). setAttribute('src','../images/p2.jpg')">
+
+<img src="../images/p1.jpg" onclick="alert(this.getAttribute('src'))">
+
+
+- innerText Property 
+--------------------
+- property sets or returns the text content of the specified node, and all its descendants.
+
+If you set the innerText property, any child nodes are removed and replaced by a single Text node containing the specified string.
+
+It is used mostly in the web pages to generate the dynamic content such as writing the validation message, password strength etc.
+
+Example:
+
+<html>
+<body>
+<div id=para>
+ <h1>Content-1</h1>    
+ <h2>Content-2</h2>   
+</div>    
+
+<button onclick="fun1()">Show Content</button>  
+
+<script>
+function fun1()
+{
+ let para = document.getElementById('para')
+ alert(para.innerHTML)
+ alert(para.innerText)    
+ let content='<h1>Paragraph</h1>'        
+ //para.innerHTML = content
+ para.innerText = content    
+}
+</script>    
+</body>
+</html>
+
+
+8) textContent Property - returns the text content of all elements, while innerText returns the content of all elements, except for <script> and <style> elements.
+
+- innerText will not return the text of elements that are hidden with CSS (textContent will).
+
+Example - 1 : Web page to understand the difference between innerHTML, innerText and textContent properties
+
+<html>
+<body>
+<p id="para">   This element has extra spacing        and contains <span>a span element</span>.</p>
+
+<button onclick="getInnerText()"> Get Inner Text</button>
+<button onclick="getInnerHTML()"> Get Inner HTML</button>
+<button onclick="getTextContent()"> Get Text Content</button>
+    
+<script>
+var para = document.getElementById("para");
+    
+function getInnerText() {
+  alert(para.innerText)
+}
+
+function getInnerHTML() {
+  alert(para.innerHTML)
+}
+
+function getTextContent() {
+  alert(para.textContent)
+}
+</script>
+</body>
+</html>
+
+======================================
+Adding and Deleting Elements in DOM Tree
+----------------------------------------
+document.createElement(element) - create an HTML element
+
+document.removeChild(element) - remove an HTML element
+
+document.createTextNode(text_content)
+
+document.appendChild(element) - add an HTML element
+
+document.replaceChild(new, old) - replace an HTML element
+
+document.write(text) - write into the HTML output stream
+
+Adding Events Handlers
+----------------------
+document.getElementById(id).onclick = function(){code}
+
+-------------------------------
+To add a new element to the HTML DOM, you must create the element (element node) first, and then append it to an existing element. 
+
+
+Usecase- 1) : to add a new <h1> inside a <div> on the button click
+
+Usecase- 2) : to change the border attribute value of table 
+
+
+            let table = document.querySelector('table')
+            let table_attrs = table.attributes
+            console.log('Attributes : '+table_attrs.length)
+            for(let attr of table_attrs){
+               // console.log(attr.nodeName+" : "+attr.nodeValue)
+               if(attr.nodeName.toLowerCase() == "border")
+                attr.nodeValue = "1"	         
+            }
+
+// HTMLTableElement interface: summary attribute
+table.summary = "note: increased border";
+
+
+Creating new HTML Elements - insertBefore()
+-------------------------------------------
+Usecase -3) :  to add an element before an existing element
+
+<div id="div1">
+  <p id="p1">This is a paragraph.</p>
+  <p id="p2">This is another paragraph.</p>
+</div>
+
+<script>
+let para_new = document.createElement("p");
+let node = document.createTextNode("This is new.");
+para_new.appendChild(node);
+
+
+let element = document.getElementById("div1");
+let child = document.getElementById("p1");
+element.insertBefore(para_new, child);
+</script> 
+
+
+Removing Existing HTML Elements
+-------------------------------
+To remove an HTML element, we must know the parent of the element:
+
+<div id="div1">
+  <p id="p1">This is a paragraph.</p>
+  <p id="p2">This is another paragraph.</p>
+</div>
+
+<script>
+ let parent = document.getElementById("div1");
+ let child = document.getElementById("p1");
+ parent.removeChild(child);
+</script> 
+
+
+To replace an element in the HTML DOM, use the replaceChild() method:
+
+ parent.replaceChild(para_element, element);
+
+
+ <div id="div1">
+  <p id="p1">This is a paragraph.</p>
+  <p id="p2">This is another paragraph.</p>
+ </div>
+
+<script>
+ let para = document.createElement("p");
+ let node = document.createTextNode("This is new.");
+ para.appendChild(node);
+
+ let parent = document.getElementById("div1");
+ let child = document.getElementById("p1");
+ parent.replaceChild(para, child);
+</script> 
+
+==============================
+<html>
+<body>
+<div id="div">
+ <p>Testing DOM Manipulation</p>    
+</div>    
+<button onclick="create()">Create Heading </button>    
+    
+<script>
+function create(){
+ let element = document.createElement('h1')
+ let element_data = document.createTextNode('Heading')    
+ element.appendChild(element_data)
+ 
+ let div = document.getElementById('div')
+ div.appendChild(element)
+}    
+</script>    
+</body>
+</html>
+
+To append an element to the <body>
+ document.body.appendChild(element);
+
+
+=============================
+
+JavaScript HTML DOM Collections
+
+The getElementsByTagName() method returns an HTMLCollection object.
+
+An HTMLCollection object is an array-like list (collection) of HTML elements.
+
+<html>
+<body>
+
+<h2>JavaScript HTML DOM</h2>
+
+<p>Hello World!</p>
+
+<p>Hello Norway!</p>
+
+<p id="demo"></p>
+
+<script>
+var myCollection = document.getElementsByTagName("p");
+document.getElementById("demo").innerHTML =
+"The innerHTML of the second paragraph is: " +
+myCollection[1].innerHTML;
+</script>
+
+</body>
+</html>
+
+
+var myCollection = document.getElementsByTagName("p");
+document.getElementById("demo").innerHTML = myCollection.length;
+
+
+
+The HTML DOM NodeList Object
+
+A NodeList object is a list (collection) of nodes extracted from a document.
+
+A NodeList object is almost the same as an HTMLCollection object.
+
+<html>
+<body>
+
+<h2>JavaScript HTML DOM!</h2>
+
+<p>Hello World!</p>
+
+<p>Hello Norway!</p>
+
+<p id="demo"></p>
+
+<script>
+var myNodelist = document.querySelectorAll("p");
+document.getElementById("demo").innerHTML =
+"The innerHTML of the second paragraph is: " +
+myNodelist[1].innerHTML;
+</script>
+
+</body>
+</html>
+
+
+The Difference Between an HTMLCollection and a NodeList
+
+An HTMLCollection is a collection of HTML elements.
+
+A NodeList is a collection of document nodes.
+
+A NodeList and an HTML collection is very much the same thing.
+
+Both an HTMLCollection object and a NodeList object is an array-like list (collection) of objects.
+
+Both have a length property defining the number of items in the list (collection).
+
+Both provide an index (0, 1, 2, 3, 4, ...) to access each item like an array.
+
+HTMLCollection items can be accessed by their name, id, or index number.
+
+NodeList items can only be accessed by their index number.
+
+Only the NodeList object can contain attribute nodes and text nodes.
+
+
+
+

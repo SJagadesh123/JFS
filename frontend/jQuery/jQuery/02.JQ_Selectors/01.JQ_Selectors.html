@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        p{
+            margin:30px 20px;
+            text-align:justify;
+            font-size:18px;
+        }
+        .bg_green{
+            padding:10px;
+        }
+        form{
+            margin:20px;
+        }
+    </style>
+    <title>Selectors</title>
+</head>
+<body>
+    <nav id="header">
+        <h2>jQuery | Selectors</h2>
+    </nav>
+
+    <p id="para_1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis architecto quo explicabo. Quidem unde debitis, eum minus ducimus perspiciatis illum eaque repellendus voluptate veritatis quibusdam omnis quis laboriosam. Possimus repellat minima dicta placeat, eos magnam omnis nihil. Quos sed amet sequi molestias accusantium dolorem quibusdam, maxime nemo nulla nobis delectus dolores quisquam rem eveniet magnam ut itaque, quis tempora, placeat saepe. Error, quia quaerat! Labore ullam deleniti quasi nemo, facere culpa voluptas explicabo. Temporibus esse molestias vel porro culpa!</p>
+
+    <p class="bg_green">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae distinctio omnis, praesentium, esse fuga amet illo doloribus autem fugiat a iure dolore eos dolorum, neque odit deserunt doloremque delectus maxime pariatur in nulla! Sit praesentium commodi non ea sapiente unde ullam eos dolorum consectetur officiis ut, esse reprehenderit vel veniam inventore saepe accusantium nostrum odio pariatur asperiores. Atque aliquid ipsam earum repellendus eveniet similique omnis quae, amet explicabo ipsum accusamus, quo laudantium eaque repellat expedita optio nam harum excepturi iusto.</p>
+    
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi odit sit eum earum impedit enim excepturi! Veritatis earum beatae consequuntur minus dignissimos alias sint rem, sapiente ea corporis eius delectus vero, necessitatibus a dicta facilis! Officiis doloremque aspernatur dolorem sapiente quasi corporis, unde, in id quia magni quibusdam perspiciatis? Adipisci consequuntur beatae aspernatur perspiciatis animi iusto non labore, incidunt magni exercitationem facere delectus optio sint alias quidem voluptas. Non explicabo eum ipsum provident magni sint inventore neque, fugiat corporis quam.</p>
+
+    <p class="bg_green">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit dolorum nobis debitis explicabo. Autem magnam illum unde et, molestias suscipit dolore dolores ex modi ab magni doloribus dicta at architecto expedita quaerat iste ea aut repudiandae ducimus voluptates! Sint, exercitationem laboriosam. Est adipisci dolor, ratione consectetur rerum ab molestiae corrupti sapiente labore corporis fugiat autem nihil, aliquid magnam! Tenetur expedita omnis non perferendis distinctio magnam sed saepe numquam nulla possimus ratione aut, ut repellat asperiores! Animi commodi alias saepe repudiandae!</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio quibusdam quasi unde quam corrupti a sit quisquam eius architecto maxime quod repellendus error, earum amet sed commodi possimus, quia quas accusantium tempora, quaerat consequatur eveniet? Aliquam dolorum voluptatibus ex fugiat ullam odit animi unde repellat quos illo libero aut suscipit maiores nam quas iste nulla, cupiditate minus sed accusamus qui? Nostrum beatae officiis numquam sequi, saepe nobis, labore accusamus architecto, dolore deleniti sit suscipit deserunt perferendis assumenda odit. Dolore, tempora.</p>
+
+    <hr>
+
+    <section>
+        <article id="login">
+            <form action="">
+                User Name:<br>
+                <input type="text" size=20>
+                <br><br>
+                Password:<br>
+                <input type="password" size=20>
+            </form>
+        </article>
+    </section>
+    <script src="../01.JQ_Basics/js/jquery-3.5.1.js"></script>
+    <script>
+        //Tag selector
+        $('p').click(function(){
+            console.log('In Tag selector');
+            $(this).css('background-color','orange');
+            $(this).css('border','5px solid gray')
+        })
+
+        //ID selector
+        $('#para_1').click(function(){
+            console.log('In ID selector');
+            $('#para_1').css({
+                'background':'linear-gradient(45deg, black 50%, darkred 50%)',
+                'color':'white',
+                'padding':'10px',
+                'border-radius':'15px'
+            })
+        })
+
+        //Class Selector
+        $('.bg_green').click(function(){
+            console.log('In class selector')
+            //$('.bg_green').css({
+            $(this).css({    
+                'background-color':'green'
+            })
+        })
+
+        //Universal Selector
+        $('*').css('font-family','comic sans ms');
+        $('*').css('font-size','20px');
+
+        //Attribute and Group Selector
+        /*
+        $('input[type=text], input[type=password]').focus(function(){
+            $(this).css({
+                'background-color':'yellow'
+            })
+        })
+        $('input[type=text], input[type=password]').blur(function(){
+            $(this).css({
+                'background-color':'white'
+            })
+        })
+        */
+
+        $('input[type=text], input[type=password]').focus(function(){
+            $(this).css({
+                'background-color':'yellow'
+            })
+        })
+          .blur(function(){
+            $(this).css({
+                'background-color':'white'
+            })
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <!-- include jQuery library using CDN - Content Delivery Network-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        #container{
+            width:500px;
+            font-size:20px;
+            margin:100px auto;            
+            background:linear-gradient(45deg,black 50%, darkred 50%);
+            color:white;
+            padding:10px;
+            border-radius:15px;
+            box-shadow:0 0 10px black;
+        }
+        input{
+            font-size:20px;
+        }
+        #container table{
+            margin:auto;
+        }
+        tr{
+            height:50px;
+        }
+    </style>
+    <title>Calculator</title>
+</head>
+<body>
+    <nav id="header">
+        <h2>jQuery | Calculator</h2>
+    </nav>
+    <div id="container">
+        <table>
+            <tr>
+                <td width="170px">First No</td>
+                <td><input type="text" id="txtNum1" size=10 autofocus></td>
+            </tr>
+            <tr>
+                <td>Second No</td>
+                <td><input type="text" id="txtNum2" size=10></td>
+            </tr> 
+            <tr>
+                <td>Sum</td>
+                <td style="text-align:center">
+                  <span id="result_sum" style="color:yellow;">???</span>
+                </td>
+            </tr>                       
+            <tr>                
+                <td colspan=2 align=center>
+                    <input type="button" id="but_sum" value="S U M" >
+                </td>
+            </tr>            
+        </table>
+    </div>
+
+    <script>
+        $('#but_sum').click(function(){
+            //get the text field values
+            let num_1 = $('#txtNum1').val();
+            let num_2 = $('#txtNum2').val();
+
+            if(num_1.length>0 && num_2.length>0)
+            {
+                //convert string data to number type
+                num_1 = Number(num_1);
+                num_2 = Number(num_2);
+                //num_2 = parseInt(num_2);
+
+                let sum = num_1 + num_2;
+                //to place the result in page
+                $('#result_sum').text(sum);
+            }
+            else
+            {
+                $('#result_sum').text('Please enter data');
+            }
+        })
+    </script>
+</body>
+</html>

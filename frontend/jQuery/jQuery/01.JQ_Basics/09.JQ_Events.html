@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        #container{
+            width:700px;
+            font-size:20px;
+            margin:100px auto;            
+            background:linear-gradient(45deg,black 50%, darkred 50%);
+            color:white;
+            padding:10px;
+            border-radius:15px;
+            box-shadow:0 0 10px black;
+        }
+        input{
+            font-size:20px;
+        }  
+        #textHelp{
+            font-size:16px;
+            color:yellow;
+            display:none;
+        }      
+    </style>
+    <title>Events</title>
+</head>
+<body>
+    <nav id="header">
+        <h2>jQuery | Events</h2>
+    </nav>
+    <div id="container">
+        Enter Name: 
+        <input type="text" id="input_name" size=20>
+        <span id="textHelp">enter only alphabets and spaces</span>
+    </div>
+
+    
+    <script src="js/jquery-3.5.1.js"></script>
+    <script>
+        $('#input_name').focus(function(){
+           // $('#textHelp').css('display','inline-block');
+           $('#textHelp').show();
+        })
+
+        $('#input_name').blur(function(){
+           // $('#textHelp').css('display','none');
+           $('#textHelp').hide();
+        })        
+    </script>
+</body>
+</html>

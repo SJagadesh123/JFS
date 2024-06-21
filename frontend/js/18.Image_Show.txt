@@ -1,0 +1,63 @@
+Image Uploading using Java Script
+=================================
+
+<body>
+    <input type="file" onchange="previewFile()">
+    <br>
+    <img src="" height="200" alt="Image preview..." style="margin:50px;">
+    
+
+    <script>
+        function previewFile() {
+            let preview = document.querySelector('img');
+
+            let imageSource = document.querySelector('input[type=file]')
+
+            let images = imageSource.files
+
+            let file = images[0];
+
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                // convert image file to base64 string
+                preview.src = reader.result;
+            },true);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+
+
+The FileReader type has a single job: to read data from a file and store it in a JavaScript variable.
+The FileReader object lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using File or Blob objects to specify the file or data to read.
+
+FileReader.onload - A handler for the load event. This event is triggered each time the reading operation is successfully completed
+
+===========================
+Range Selection
+---------------
+<body>
+    <input type="range" min=1 max=200000>
+    &#8377;<span id="label_value"></span> 
+
+    <script>
+        let rangeEl = document.querySelector('input[type=range]')
+        let amountEl = document.querySelector('#label_value')
+
+        rangeEl.addEventListener('input', function(){
+            /*
+            let selectedAmount =  rangeEl.value
+            */
+            let selectedAmount = rangeEl.value
+            selectedAmount = new Intl.NumberFormat('en-IN',{maximumSignificantDigits: 2}).format(selectedAmount)
+            amountEl.innerText = selectedAmount
+        })
+    </script>
+</body>
+
+
+

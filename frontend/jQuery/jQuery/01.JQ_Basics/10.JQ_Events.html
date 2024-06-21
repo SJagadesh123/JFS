@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .container{
+            width:500px;
+            height:300px;
+            text-align:center;
+            line-height:300px;
+            font-size:20px;
+            margin:100px auto;            
+            background:linear-gradient(45deg,rgb(1, 1, 22) 50%, darkred 50%);
+            color:white;
+            padding:10px;
+            border-radius:15px;
+            box-shadow:0 0 10px black;
+        }
+
+    </style>
+    <title>Events</title>
+</head>
+<body>
+    <nav id="header">
+        <h2>jQuery | Events</h2>
+    </nav>
+    <div class="container"></div>
+    
+    <script src="js/jquery-3.5.1.js"></script>
+    <script>
+       let fun1 = ()=>{
+        $('.container').text('Mouse is on top')
+       } 
+
+       function fun2(){
+        $('.container').text('Mouse gone out from me')   
+       }
+
+
+       $('.container').hover(fun1, fun2);
+
+       $('.container').mousemove(function(){
+           /*
+           let x = event.pageX;
+           let y = event.pageY;
+           $('.container').text(`(${x},${y})`)
+           */
+           $(this).text(`(${event.pageX},${event.pageY})`)
+       })
+    </script>
+</body>
+</html>

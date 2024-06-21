@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/mdb.css">
+    <title>Employee Details</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm  bg-warning">
+        <a href="#" class="navbar-brand">
+            AJAX | Example-01 | Employee Details
+        </a>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary" id="js_ajax_btn">Get Employee Data with Java Script</button>
+                <button class="btn btn-secondary" id="jq_ajax_btn">Get Employee Data with jQuery</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover text-center">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>SL No</th>
+                            <th>FIRST NAME</th>
+                            <th>LAST NAME</th>
+                            <th>EMAIL</th>                            
+                            <th>GENDER</th>
+                            <th>COUNTRY</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="table_body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/mdb.js"></script>
+
+    <script>
+        let js_btn = document.querySelector('#js_ajax_btn');
+
+        let getEmployees = () => {
+            //alert('clicked on button')
+            let xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "https://jsonplaceholder.typicode.com/users", true);
+
+            xhr.onreadystatechange = function () {
+               // alert('state change - '+ xhr.readyState)
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    let response_text = xhr.responseText;
+                    let persons = JSON.parse(response_text)
+                    displayEmployeeData(persons);
+                }
+            }
+
+            xhr.send();
+        }//function
+
+
+        js_btn.addEventListener('click', getEmployees)
+
+        let displayEmployeeData = (employees) => {
+            let rows = ''
+            for (let emp of employees) {
+                rows += `<tr>
+                    <td>${emp.id}</td>
+                    <td>${emp.name}</td>
+                    <td>${emp.username}</td>
+                    <td>${emp.email}</td>
+                    <td>${emp.gender}</td>
+                    <td>${emp.country}</td>
+                    </tr>
+                    `
+            }
+            document.querySelector('#table_body').innerHTML = rows
+        }
+
+        /*-- JQuery - AJAX --*/
+        $('#jq_ajax_btn').click(function(){            
+        $.ajax({
+                method: 'GET',
+                url: 'https://jsonplaceholder.typicode.com/users',				
+				crossDomain: true,
+                dataType:'JSON',
+                success: function(persons){                    
+                    displayEmployeeData(persons);
+                    return persons;
+                }                
+            })
+        })
+        
+    </script>
+</body>
+
+</html>

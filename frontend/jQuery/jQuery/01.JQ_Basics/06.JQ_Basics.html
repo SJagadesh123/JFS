@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body{
+            margin-bottom:600px;
+        }
+        .container{
+            width:80%;
+            margin:30px auto;
+            padding:10px;
+            border-radius:20px;
+            box-shadow:0 0 10px black;
+            font-size:27px;
+            background:linear-gradient(45deg,black 50%,darkred 50%);
+            color:white;
+            font-size:20px;
+            text-align: center;                        
+        }        
+    </style>
+
+    <script src="js/jquery-3.5.1.js"></script>
+
+    <title>jQuery Basics</title>
+</head>
+<body>
+    <div id="header">
+        <h2>jQuery | inline, internal & external</h2>
+    </div>
+
+    <h2>Inline jQuery</h2>
+    <div class="container" onclick="$(this).hide('slow')">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus deserunt cum accusamus a veritatis nulla nam ratione itaque impedit? Voluptate repudiandae perspiciatis soluta illo eligendi nemo nam itaque, ipsam, ad quis error totam officia nisi iure maxime deserunt vero? Odio facere possimus quis harum sed ex dolorum quaerat. Accusantium aspernatur quasi iste at explicabo est consequuntur atque nam eos, repudiandae sequi ut alias, excepturi rerum sit natus distinctio ab ea corrupti doloribus? Ex corrupti expedita a porro libero repellat cupiditate.</p>
+    </div>
+
+
+    <h2>Internal jQuery</h2>
+    <div class="container" id='section_2'>
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure, suscipit odio voluptatum dolore laborum illum, earum natus voluptatibus repellendus fuga unde, molestiae autem neque dolor itaque illo est nesciunt blanditiis. Voluptates sed laborum dolore distinctio. Similique maiores necessitatibus perferendis doloribus incidunt, eaque tempora pariatur est voluptatem dolorum eligendi fuga laborum esse, nisi alias beatae accusantium facilis optio tenetur consectetur aspernatur. Expedita repudiandae laboriosam, mollitia officiis excepturi sit sed, aut adipisci, possimus numquam iste explicabo obcaecati maiores voluptatem natus non veritatis!
+        </p>
+    </div>
+
+    <h2>External jQuery</h2>
+    <button id="btn_hide_show" style="margin-left:100px;font-size:20px;;background-color:orangered;border:none;width:100px;padding:5px 10px;">HIDE</button>
+    <div class="container" id='section_3'>
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure, suscipit odio voluptatum dolore laborum illum, earum natus voluptatibus repellendus fuga unde, molestiae autem neque dolor itaque illo est nesciunt blanditiis. Voluptates sed laborum dolore distinctio. Similique maiores necessitatibus perferendis doloribus incidunt, eaque tempora pariatur est voluptatem dolorum eligendi fuga laborum esse, nisi alias beatae accusantium facilis optio tenetur consectetur aspernatur. Expedita repudiandae laboriosam, mollitia officiis excepturi sit sed, aut adipisci, possimus numquam iste explicabo obcaecati maiores voluptatem natus non veritatis!
+        </p>
+    </div>
+    <script>
+        $('#section_2').click(function(){
+            $(this).hide(2000);
+        })
+    </script>
+    <script src="script_1.js"></script>
+</body>
+</html>
